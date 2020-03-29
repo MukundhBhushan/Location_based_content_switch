@@ -1,0 +1,20 @@
+<html>
+    <head>
+        <title>location based content</title>
+    </head>
+    <script src="./main.js"></script>
+    <body>
+        <h1>Location based content switch</h1>
+        latitude: <input type="number" id="latitude"/> <br><br>
+        longitude: <input type="number" id="longitude"/><br><br>
+        <button onclick="changestuff()">Get Info</button>
+        <button onclick="setloc()">Set loc</button>
+        <button id = "find-me" onclick="getCurrentLoc()">Show my location</button><br/>
+        <p id = "status"></p>
+        <a id = "map-link" target="_blank"></a>
+        <p id = "where">You are outside</p>
+        <button title="out" id="out" onclick="show()">out</button>
+        <p id ="showc"></p>
+    </body>
+    
+</html>
