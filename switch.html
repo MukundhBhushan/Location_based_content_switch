@@ -1,10 +1,12 @@
+<!-- author: Mukundh
+Company: Nebutech -->
 <html>
 <head>
   <title>Google Maps Multiple Markers</title>
   <script src="http://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script>
   <script src="https://use.fontawesome.com/6608b6cbc6.js"></script>
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.1/css/all.css">
-  <script src = "./try.js"></script>
+  <script src = "./switch.js"></script>
   <head>
     <style>
       ul {
@@ -44,41 +46,37 @@
 
 
       }
+
+      #details {
+        font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+        border-collapse: collapse;
+        width: 60%;
+      }
+
+      #details td, #details th {
+        border: 1px solid #ddd;
+        padding: 8px;
+      }
+
+      #details tr:nth-child(even){background-color: #f2f2f2;}
+
+      #details tr:hover {background-color: #ddd;}
+
+      #details th {
+        padding-top: 12px;
+        padding-bottom: 12px;
+        text-align: left;
+        background-color: #4CAF50;
+        color: white;
+      }
       </style>
 </head>
 <body>
   <div id="map" style="height: 400px; width: 500px;"> </div>
 
   <span id="here"></span> 
-  <!-- <div>
-    <ul>
-      <li><a class="active" href="#home">Home</a></li>
-      <li><a href="#news">News</a></li>
-      <li><a href="#contact">Contact</a></li>
-      <li><a href="#about">About</a></li>
-    </ul>
-  </div> -->
 
 <script type="text/javascript">
-
-    
-    // var menu2 = '<ul> <li><button onclick = "home()"><a class="active" href="#home">Home</a></li> <li><a href="#news">News</a></li> <li><a href="#contact">Contact</a></li> <li><a href="#about">About</a></li> </ul>';
-
-    // var menu3 = '<ul> <li><a class="active" href="#home">Home</a></li> <li><a href="#news">News</a></li> <li><a href="#contact">Contact</a></li> <li><a href="#about">About</a></li> </ul>';
-
-    // var menu4 = '<ul> <li><a class="active" href="#home">Home</a></li> <li><a href="#news">News</a></li> <li><a href="#contact">Contact</a></li> <li><a href="#about">About</a></li> </ul>';
-
-    // var menu5 = '<ul> <li><a class="active" href="#home">Home</a></li> <li><a href="#news">News</a></li> <li><a href="#contact">Contact</a></li> <li><a href="#about">About</a></li> </ul>';
- 
-    var locations = [
-      [menu1, ...locDict.hospital],
-      [menu2, ...locDict.hotel],
-      [menu3, ...locDict.mall],
-      [menu4,...locDict.shop],
-    //   [menu5, -33.950198, 151.259302, 1]
-    ];
-    loc = Object.keys(locDict)
-    console.log(loc)
     var icons = {
         hospital: {
         icon: 'f0fd'
@@ -92,10 +90,9 @@
         shop: {
         icon: 'f291'
         }
-        
     };
-    console.log(locations)
 
+    
     var map = new google.maps.Map(document.getElementById('map'), {
       zoom: 12,
       center: new google.maps.LatLng(12.9816, 77.7146),
@@ -105,29 +102,28 @@
     var infowindow = new google.maps.InfoWindow();
 
     var marker, i;
-
-    for (i = 0; i < locations.length; i++) {
-      marker = new google.maps.Marker({
-        position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+    for (i = 0; i < locDict.length; i++) {
+        marker = new google.maps.Marker({
+        position: new google.maps.LatLng(locDict[i][0], locDict[i][1]),
         icon: {
-      path: google.maps.SymbolPath.CIRCLE,
-      fillColor: '#00F',
-      fillOpacity: 1,
-      strokeWeight: 0,
-      scale: 15
-    },
-    label: {
-      fontFamily: "FontAwesome",
-      fontWeight: '900',
-      text: eval("'\\u"+icons[loc[i]].icon+"'"),
-      color: 'white'
-    },
+          path: google.maps.SymbolPath.CIRCLE,
+          fillColor: '#00F',
+          fillOpacity: 1,
+          strokeWeight: 0,
+          scale: 15
+        },
+        label: {
+          fontFamily: "FontAwesome",
+          fontWeight: '900',
+          text: eval("'\\u"+ icons[locDictKeysArr[i]].icon +"'"),
+          color: 'white'
+        },
         map: map
       });
       
       google.maps.event.addListener(marker, 'click', (function(marker, i) {
         return function() {
-          infowindow.setContent(locations[i][0]);
+          infowindow.setContent(menu[i]);
           infowindow.open(map, marker);
         }
       })(marker, i));
@@ -135,3 +131,5 @@
   </script>
 </body>
 </html>
+<!-- author: Mukundh
+Company: Nebutech -->
